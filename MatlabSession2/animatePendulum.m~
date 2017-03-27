@@ -1,0 +1,21 @@
+function animatePendulumDumb
+close all;
+% Animation Example
+
+g = 1;
+l = 1;
+
+[tarray,zarray] = ode45(@odeFun,[0 10],[pi/2,0]);
+theta = zarray(:,1);
+axis([-1.1,1.1,0,-1.1
+for i = 1:length(tarray)
+    plot(sin(theta(i)),-cos(theta(i)),'.','MarkerSize',30);
+    pause(0.01)
+end
+
+
+    function zdot = odeFun(t,z)
+        thdd = pendulumDyn(g,l,z(1));        
+        zdot = [z(2);thdd];        
+    end
+end
